@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
-import base64;
+import base64
 
 from utils.grok import interact_with_data
 
@@ -16,7 +16,6 @@ def render_operations_dashboard(data: pd.DataFrame):
     data.dropna(subset=['violent_crime'], inplace=True)
     estados_interesse = ['Maryland', 'Idaho', 'Massachusetts']
     data = data[data['state_name'].isin(estados_interesse)]
-
 
     data = data.iloc[1:]
 
@@ -122,9 +121,13 @@ def render_operations_dashboard(data: pd.DataFrame):
         "What factors have the greatest influence on the violent crime rate, according to the model?"
     ]
 
-    selected_question = st.selectbox("Select a predefined question or type your own:", 
-                                     [""] + predefined_questions)
+    # Save the selected question in session state
+    if 'selected_question' not in st.session_state:
+        st.session_state.selected_question = "Which states have the highest potential for cost reduction?"
     
+    selected_question = st.selectbox("Select a predefined question or type your own:", 
+                                     [""] + predefined_questions, index=predefined_questions.index(st.session_state.selected_question))
+
     user_question = st.text_input("Your question:", value=selected_question)
 
     if st.button("Submit Question"):
@@ -150,5 +153,8 @@ def render_operations_dashboard(data: pd.DataFrame):
 
             res = interact_with_data(data.describe().to_string(), images, user_question)
             st.write(res.content)
+            
+            # Save the selected question to session state
+            st.session_state.selected_question = selected_question
         else:
             st.warning("Please select or type a question.")
