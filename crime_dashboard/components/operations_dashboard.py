@@ -138,17 +138,17 @@ def render_operations_dashboard(data: pd.DataFrame):
             # swap with getting images that Ale added
 
             images = [
-                base64.b64encode(open("./assets/massachussets/budget_massachussets_2020.png", "rb").read()).decode("utf-8"),
-                base64.b64encode(open("./assets/massachussets/budget_massachussets_2021.png", "rb").read()).decode("utf-8"),
-                base64.b64encode(open("./assets/massachussets/budget_massachussets_2022.png", "rb").read()).decode("utf-8"),
-                base64.b64encode(open("./assets/massachussets/budget_massachussets_2023.png", "rb").read()).decode("utf-8"),
-                base64.b64encode(open("./assets/massachussets/budget_massachussets_2024.png", "rb").read()).decode("utf-8"),
-                base64.b64encode(open("./assets/maryland/budget_maryland_2020.png", "rb").read()).decode("utf-8"),
-                base64.b64encode(open("./assets/maryland/budget_maryland_2021.png", "rb").read()).decode("utf-8"),
-                base64.b64encode(open("./assets/maryland/budget_maryland_2022.png", "rb").read()).decode("utf-8"),
-                base64.b64encode(open("./assets/maryland/budget_maryland_2023.png", "rb").read()).decode("utf-8"),
-                base64.b64encode(open("./assets/maryland/budget_maryland_2024.png", "rb").read()).decode("utf-8"),
-                base64.b64encode(open("./assets/idaho/budgets_idaho.png", "rb").read()).decode("utf-8"),
+                base64.b64encode(open("crime_dashboard/assets/massachussets/budget_massachussets_2020.png", "rb").read()).decode("utf-8"),
+                base64.b64encode(open("crime_dashboard/assets/massachussets/budget_massachussets_2021.png", "rb").read()).decode("utf-8"),
+                base64.b64encode(open("crime_dashboard/assets/massachussets/budget_massachussets_2022.png", "rb").read()).decode("utf-8"),
+                base64.b64encode(open("crime_dashboard/assets/massachussets/budget_massachussets_2023.png", "rb").read()).decode("utf-8"),
+                base64.b64encode(open("crime_dashboard/assets/massachussets/budget_massachussets_2024.png", "rb").read()).decode("utf-8"),
+                base64.b64encode(open("crime_dashboard/assets/maryland/budget_maryland_2020.png", "rb").read()).decode("utf-8"),
+                base64.b64encode(open("crime_dashboard/assets/maryland/budget_maryland_2021.png", "rb").read()).decode("utf-8"),
+                base64.b64encode(open("crime_dashboard/assets/maryland/budget_maryland_2022.png", "rb").read()).decode("utf-8"),
+                base64.b64encode(open("crime_dashboard/assets/maryland/budget_maryland_2023.png", "rb").read()).decode("utf-8"),
+                base64.b64encode(open("crime_dashboard/assets/maryland/budget_maryland_2024.png", "rb").read()).decode("utf-8"),
+                base64.b64encode(open("crime_dashboard/assets/idaho/budgets_idaho.png", "rb").read()).decode("utf-8"),
             ]
 
             res = interact_with_data(data.describe().to_string(), images, user_question)
