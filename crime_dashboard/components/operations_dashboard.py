@@ -7,6 +7,9 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
+import base64;
+
+from utils.grok import interact_with_data
 
 def render_operations_dashboard(data: pd.DataFrame):
     st.header("Painel de Operações")
@@ -129,9 +132,14 @@ def render_operations_dashboard(data: pd.DataFrame):
 
     if st.button("Enviar Pergunta"):
         if user_question:
-            st.write("Resposta simulada do LLM:")
-            st.write("Analisando sua pergunta... (Esta é uma resposta simulada do assistente de IA)")
+            st.write("Se comunicando com o Grok...")
             st.write(f"Pergunta recebida: {user_question}")
-            st.write("Para uma implementação real, você precisaria integrar com um serviço de LLM como OpenAI GPT ou similar.")
+            
+            # trocar por obter as imagens que o ale agregou
+            base64_image = base64.b64encode(open("program.png", "rb").read()).decode("utf-8")
+            images = [base64_image]
+
+            res = interact_with_data(data.describe().to_string(),images,user_question)
+            st.write(res.content)
         else:
             st.warning("Por favor, selecione ou digite uma pergunta.")
